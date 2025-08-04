@@ -1,0 +1,17 @@
+com\bienvenu\service\ManagementServiceImpl.class
+com\bienvenu\service\UserServiceImpl.class
+com\bienvenu\model\ManagementId.class
+com\bienvenu\service\UserService.class
+com\bienvenu\service\ManagementService.class
+com\bienvenu\model\User.class
+com\bienvenu\model\TicketLinks.class
+com\bienvenu\service\EventService.class
+com\bienvenu\model\Interested.class
+com\bienvenu\repository\UserRepository.class
+com\bienvenu\repository\EventRepository.class
+com\bienvenu\config\BienvenuConfig.class
+com\bienvenu\model\Event.class
+com\bienvenu\model\InterestedId.class
+com\bienvenu\model\Management.class
+com\bienvenu\repository\ManagementRepository.class
+com\bienvenu\service\EventServiceImpl.class

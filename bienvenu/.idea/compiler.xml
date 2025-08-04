@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bienvenuApiWEB" />
+        <module name="bienvenuEar" />
+        <module name="bienvenuWeb" />
+        <module name="bienvenuEJB" />
+        <module name="bienvenuAuthEJB" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="bienvenuApiWEB" options="-parameters" />
+      <module name="bienvenuAuthEJB" options="-parameters" />
+      <module name="bienvenuEJB" options="-parameters" />
+      <module name="bienvenuWeb" options="-parameters" />
+    </option>
+  </component>
+</project>

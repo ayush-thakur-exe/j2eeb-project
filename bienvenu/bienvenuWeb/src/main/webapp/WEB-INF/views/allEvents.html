@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events</title>
+</head>
+<body>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Place</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${#lists.isEmpty(events)}">
+                    <td colspan="7" class="text-center text-muted">No events found.</td>
+                </tr>
+                <tr th:each="e : ${events}">
+                    <td th:text="${e.id}" class="text-center"></td>
+                    <td th:text="${e.title}"></td>
+                    <td th:text="${e.description}"></td>
+                    <td th:text="${e.place}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="https://jakarta.ee/xml/ns/jakartaee"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_10.xsd"
+             version="10">
+
+    <display-name>BienvenuEar</display-name>
+
+    <!-- EJB Module: bienvenuEJB -->
+    <module>
+        <ejb>com.bienvenu-bienvenuEJB-0.0.1.jar</ejb>
+    </module>
+
+    <!-- EJB Module: bienvenuAuthEJB -->
+    <module>
+        <ejb>com.bienvenu-bienvenuAuthEJB-0.0.1.jar</ejb>
+    </module>
+
+    <!-- Web Module -->
+    <module>
+        <web>
+            <web-uri>com.bienvenu-bienvenuWeb-0.0.1.war</web-uri>
+            <context-root>/</context-root>
+        </web>
+    </module>
+
+</application>
