@@ -60,7 +60,7 @@ CREATE TABLE Interested (
 
 -- Playground
 insert into event(title, description, place, datetime, longitude, latitude, total_interest)
-values ('Test event', 'tesing for the event', 'Toronto, ON', now(), 43.121312, 75.923421, 12);
+values ('Movie night', 'Gather around with popcorn and snacks to enjoy the free movie night hosted by ignite!', 'Toronto, ON', now(), 43.121312, 75.923421, 12);
 
 select * from Interested;
 select * from Ticket_Links;

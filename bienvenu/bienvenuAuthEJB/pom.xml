@@ -86,7 +86,13 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
-   </dependencies>
+      <dependency>
+          <groupId>com.bienvenu</groupId>
+          <artifactId>bienvenuEJB</artifactId>
+          <version>0.0.1</version>
+          <scope>compile</scope>
+      </dependency>
+  </dependencies>
 
     <build>
         <plugins>

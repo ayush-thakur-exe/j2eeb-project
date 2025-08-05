@@ -1,0 +1,25 @@
+<header class="site-header" th:fragment="header">
+    <div class="logo-area">
+        <img th:src="@{/assets/logo.png}" alt="Bienvenu Logo" class="logo">
+        <span class="brand-name">Bienvenu</span>
+    </div>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search..." id="searchQuery">
+        <div class="search-indicator" id="btnSearch">
+            Go!
+        </div>
+    </div>
+
+    <div class="auth-links">
+        <a th:href="@{/login}" class="auth-link">Login / Signup</a>
+    </div>
+
+    <script>
+        // onSearch
+        document.querySelector("#btnSearch").addEventListener("click", () => {
+            const query = document.querySelector("#searchQuery").value
+            window.location.href = "/search?q="+query
+        })
+    </script>
+</header>

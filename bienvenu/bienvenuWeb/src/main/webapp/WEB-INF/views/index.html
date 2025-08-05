@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-US">
+<head>
+    <title>Bienvenu - Events Near You</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<!-- Header Fragment -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+
+    <h2>Happening around you</h2>
+    <div class="featured-event-placeholder">
+        <img src="/assets/banner.png" alt="Banner">
+    </div>
+
+    <h2>More Events</h2>
+
+    <div th:each="event : ${events}" class="event-card">
+        <div class="event-image-placeholder">
+            <img th:src="@{'https://picsum.photos/seed/' + ${event.id} + '/200'}" width="200" height="200" alt="Event Image"/>
+        </div>
+
+        <div class="event-details">
+            <div>
+                <span class="heading" th:text="${event.title}">Event Title</span>
+                <br/>
+                <span class="description" th:text="${event.description}">Event Description</span>
+            </div>
+            <div>
+                📍 <span th:text="${event.place}">Event Location</span>
+                <br/>
+                📅 <span th:text="${#temporals.format(event.datetime, 'd MMMM, yyyy')}">Event Date</span>
+            </div>
+        </div>
+
+        <a th:href="@{/event/{id}(id=${event.id})}">
+            <button class="join-btn">JOIN ▶</button>
+        </a>
+    </div>
+
+</main>
+
+<!-- Footer Fragment (if needed) -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

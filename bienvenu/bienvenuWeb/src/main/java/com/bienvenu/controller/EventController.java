@@ -18,6 +18,6 @@ public class EventController {
     @GetMapping("/all")
     public String allEvents(Model model){
         model.addAttribute("events", eventService.findAll());
-        return "allEvents";
+        return "index";
     }
 }

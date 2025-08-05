@@ -56,6 +56,7 @@ public class WebMvcConfig implements WebMvcConfigurer, ApplicationContextAware {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 }

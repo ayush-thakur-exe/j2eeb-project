@@ -136,6 +136,11 @@
         <artifactId>thymeleaf-spring6</artifactId>
         <version>${thymeleaf.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.thymeleaf.extras</groupId>
+        <artifactId>thymeleaf-extras-java8time</artifactId>
+        <version>3.0.4.RELEASE</version>
+      </dependency>
       <!-- JUnit 5 (shared across modules) -->
       <dependency>
         <groupId>org.junit.jupiter</groupId>
