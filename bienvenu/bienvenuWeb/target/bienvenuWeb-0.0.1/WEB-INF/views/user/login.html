@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Bienvenu</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #EA5B6F;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #EA5B6F;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #FF894F;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header fragment -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main>
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+    </div>
+</main>
+
+<!-- Footer fragment -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
