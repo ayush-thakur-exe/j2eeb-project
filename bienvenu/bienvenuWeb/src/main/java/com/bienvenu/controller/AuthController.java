@@ -18,6 +18,12 @@ public class AuthController {
         return "user/logout";
     }
 
+    // TODO: Send and retrieve user object for signup
+    @GetMapping("/auth/create")
+    public String signup() {
+        return "user/create";
+    }
+
     @PostMapping("/login")
     public void processLogin(){
         System.out.println("Someone tried to login");

@@ -33,7 +33,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/users/create", "/css/**", "/js/**", "/assets/**").permitAll()
+                .requestMatchers("/login", "/auth/create", "/css/**", "/js/**", "/assets/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .anyRequest().authenticated()
             )
