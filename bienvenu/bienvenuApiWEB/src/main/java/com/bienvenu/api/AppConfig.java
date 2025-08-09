@@ -20,7 +20,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
 @Import({
-    com.bienvenu.config.BienvenuConfig.class,
     com.bienvenu.api.SecurityConfig.class 
 })
 @EnableJpaRepositories(basePackages = "com.bienvenu.repository")

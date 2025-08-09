@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-        
+            
+    
     <wb-module deploy-name="bienvenuEar-0.0.1">
-                
+                        
+        
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
-                
+                        
+        
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
         <dependent-module archiveName="com.bienvenu-bienvenuWeb-0.0.1.war" deploy-path="/" handle="module:/resource/bienvenuWEB/bienvenuWEB">
             <dependency-type>uses</dependency-type>
@@ -41,6 +44,15 @@
         <dependent-module archiveName="org.springframework-spring-beans-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/spring-beans/6.1.6/spring-beans-6.1.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="org.springframework.security-spring-security-core-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/security/spring-security-core/6.1.6/spring-security-core-6.1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.springframework.security-spring-security-crypto-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/security/spring-security-crypto/6.1.6/spring-security-crypto-6.1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.springframework.security-spring-security-config-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/security/spring-security-config/6.1.6/spring-security-config-6.1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="org.springframework.data-spring-data-jpa-3.2.5.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/data/spring-data-jpa/3.2.5/spring-data-jpa-3.2.5.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -63,15 +75,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="org.springframework-spring-web-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/spring-web/6.1.6/spring-web-6.1.6.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="org.springframework.security-spring-security-core-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/security/spring-security-core/6.1.6/spring-security-core-6.1.6.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="org.springframework.security-spring-security-crypto-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/security/spring-security-crypto/6.1.6/spring-security-crypto-6.1.6.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="org.springframework.security-spring-security-config-6.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/springframework/security/spring-security-config/6.1.6/spring-security-config-6.1.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="com.fasterxml.jackson.core-jackson-databind-2.19.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.19.2/jackson-databind-2.19.2.jar">
@@ -104,7 +107,9 @@
         <dependent-module archiveName="com.fasterxml.jackson.datatype-jackson-datatype-jsr310-2.19.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.19.2/jackson-datatype-jsr310-2.19.2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-            
-    </wb-module>
+                    
     
+    </wb-module>
+        
+
 </project-modules>

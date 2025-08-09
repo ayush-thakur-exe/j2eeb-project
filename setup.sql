@@ -66,3 +66,4 @@ select * from Interested;
 select * from Ticket_Links;
 select * from Management;
 select * from Event;
+select * from User;

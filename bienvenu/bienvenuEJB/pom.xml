@@ -21,6 +21,16 @@
             <artifactId>spring-beans</artifactId>
         </dependency>
 
+      <!-- Spring Security (NO web layer) -->
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-core</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-config</artifactId>
+      </dependency>
+
         <!-- Spring Data JPA -->
         <dependency>
             <groupId>org.springframework.data</groupId>

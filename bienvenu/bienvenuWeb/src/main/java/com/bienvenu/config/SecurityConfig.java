@@ -34,13 +34,13 @@ public class SecurityConfig implements WebMvcConfigurer {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/auth/create", "/css/**", "/js/**", "/assets/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                .requestMatchers(HttpMethod.POST, "/signup").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/evidence/all", true)
+                .defaultSuccessUrl("/", true)
                 .permitAll()
             )
             .logout(logout -> logout
