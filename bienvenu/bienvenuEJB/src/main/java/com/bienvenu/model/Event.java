@@ -32,8 +32,8 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private Set<Interested> interests;
 
-    @OneToMany(mappedBy = "event")
-    private Set<TicketLinks> ticketLinks;
+	@OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
+	private Set<TicketLinks> ticketLinks;
     
     // Getters and setters
 	public Long getId() {

@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.bienvenu.model.Management;
 
+import java.util.List;
+
 @Repository
 public interface ManagementRepository extends JpaRepository<Management, Long>{
-    
+    public List<Management> findByUser_Id(Long userId);
 }

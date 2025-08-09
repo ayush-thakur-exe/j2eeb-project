@@ -1,0 +1,137 @@
+<!-- src/main/resources/templates/event-details.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${event.title} + ' - Bienvenu'">Event Details - Bienvenu</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        :root {
+            --blue: #77BEF0; --yellow:#FFCB61; --orange:#FF894F; --pink:#EA5B6F;
+        }
+        body { margin:0; font-family: 'Segoe UI', sans-serif; background:#fafafa; }
+        main { max-width: 1100px; margin: 24px auto 60px; padding: 0 20px; }
+        .hero {
+            border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,.08);
+            margin-bottom: 24px; background: #e9eef3;
+        }
+        .hero img { width: 100%; height: 340px; object-fit: cover; display:block; }
+        .meta-card {
+            background:#fff; border-radius:16px; padding:24px; display:grid; gap:18px;
+            grid-template-columns: 1.2fr .8fr; align-items:flex-start;
+            border:1px solid #eee; box-shadow: 0 4px 14px rgba(0,0,0,.06);
+        }
+        @media (max-width: 900px) { .meta-card{ grid-template-columns: 1fr; } }
+        .title { margin:0; font-size: 28px; color:#222; }
+        .subtitle { margin:6px 0 0; color:#444; }
+        .pill {
+            display:inline-block; padding:6px 12px; border-radius:999px; font-size:12px;
+            background: var(--blue); color:#06486a; font-weight:600;
+        }
+        .section h3 { margin:0 0 10px; font-size:18px; color:#222; }
+        .grid { display:grid; gap:12px; }
+        .row { display:flex; gap:10px; align-items:center; color:#333; }
+        .dot { width:10px; height:10px; border-radius:50%; background:var(--yellow); }
+        .cta {
+            display:flex; gap:12px; margin-top:16px;
+        }
+        .btn {
+            border:none; padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:600;
+        }
+        .btn-primary { background: var(--pink); color:#fff; }
+        .btn-primary:hover { background: var(--orange); }
+        .btn-outline {
+            background:#fff; color:#333; border:2px solid var(--blue);
+        }
+        .chips { display:flex; flex-wrap:wrap; gap:8px; }
+        .chip { padding:6px 10px; border-radius:999px; background:#f7fafc; border:1px solid #eef2f7; font-size:12px; }
+        .panel {
+            background:#fff; border:1px solid #eee; border-radius:16px; padding:18px; box-shadow:0 4px 12px rgba(0,0,0,.05);
+        }
+        a { text-decoration:none; }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main>
+    <!-- Hero image (Picsum, seeded by event ID) -->
+    <div class="hero">
+        <img th:src="'https://picsum.photos/seed/' + ${event.id != null ? event.id : 42} + '/1200/500'"
+             alt="Event banner">
+    </div>
+
+    <div class="meta-card">
+        <!-- Left: main details -->
+        <section>
+            <span class="pill" th:text="${#temporals.format(event.datetime, 'EEE, d MMM yyyy • h:mm a')}">Date</span>
+            <h1 class="title" th:text="${event.title}">Event Title</h1>
+            <p class="subtitle" th:text="${event.description}">
+                Short description about the event.
+            </p>
+
+            <div class="grid" style="margin-top:14px;">
+                <div class="row">
+                    <div class="dot"></div>
+                    <div><strong>Location:</strong> <span th:text="${event.place}">Toronto, ON</span></div>
+                </div>
+                <div class="row" th:if="${event.latitude != null and event.longitude != null}">
+                    <div class="dot" style="background: var(--orange)"></div>
+                    <div>
+                        <strong>Coordinates:</strong>
+                        <span th:text="${event.latitude}">43.7</span>,
+                        <span th:text="${event.longitude}">-79.4</span>
+                        &nbsp;•&nbsp;
+                        <a th:href="'https://www.google.com/maps?q=' + ${event.latitude} + ',' + ${event.longitude}"
+                           target="_blank">Open in Maps</a>
+                    </div>
+                </div>
+                <div class="row" th:if="${event.totalInterest != null}">
+                    <div class="dot" style="background:#ffd5db"></div>
+                    <div><strong>Interested:</strong> <span th:text="${event.totalInterest}">0</span> people</div>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a th:if="${param.interested == null}" th:href="@{/event/join/{id}(id=${event.id})}" class="btn btn-primary">I am Interested!</a>
+                <a th:if="${param.interested != null}" th:href="@{/}" class="btn btn-outline">Interested</a>
+                <a th:href="@{/}" class="btn btn-outline">Back to Events</a>
+            </div>
+        </section>
+
+        <!-- Right: tickets + quick facts -->
+        <aside class="panel">
+            <div class="section">
+                <h3>Tickets</h3>
+
+                <div th:if="${event.ticketLinks == null or #sets.isEmpty(event.ticketLinks)}">
+                    No ticket links yet.
+                </div>
+
+                <div class="grid" th:if="${event.ticketLinks != null and !#sets.isEmpty(event.ticketLinks)}"
+                     th:each="t : ${event.ticketLinks}">
+                    <a th:href="${t.link}" target="_blank" class="chip" th:text="${t.platform}">Platform</a>
+                </div>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #f0f0f0; margin:16px 0;">
+
+            <div class="section">
+                <h3>Quick Info</h3>
+                <div class="chips">
+                    <span class="chip" th:text="${#temporals.format(event.datetime, 'h:mm a')}">Time</span>
+                    <span class="chip" th:text="${event.place}">Place</span>
+                    <span class="chip" th:if="${event.totalInterest != null}"
+                          th:text="${event.totalInterest} + ' interested'">Interest</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

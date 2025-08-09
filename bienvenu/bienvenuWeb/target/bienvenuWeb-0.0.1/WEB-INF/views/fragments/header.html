@@ -1,19 +1,31 @@
-<header class="site-header" th:fragment="header">
-    <div class="logo-area">
-        <img th:src="@{/assets/logo.png}" alt="Bienvenu Logo" class="logo">
-        <span class="brand-name">Bienvenu</span>
-    </div>
+<header th:fragment="header">
+    <div class="site-header">
+        <div class="logo-area">
+            <a href="/" class="invisible-a">
+            <img th:src="@{/assets/logo.png}" alt="Bienvenu Logo" class="logo">
+            <span class="brand-name">Bienvenu</span>
+            </a>
+        </div>
 
-    <div class="search-box">
-        <input type="text" placeholder="Search..." id="searchQuery">
-        <div class="search-indicator" id="btnSearch">
-            Go!
+        <div class="search-box">
+            <input type="text" placeholder="Search..." id="searchQuery">
+            <div class="search-indicator" id="btnSearch">
+                Go!
+            </div>
         </div>
     </div>
 
-    <div class="auth-links">
-        <a th:href="@{/event/create}" class="auth-link">Create an event</a>
-    </div>
+    <nav class="site-navbar">
+        <div>
+            <a th:href="@{/event/get}">My Events</a>
+        </div>
+        <div>
+            <a th:href="@{/event/myinterests}">My Interests</a>
+        </div>
+        <div>
+            <a th:href="@{/event/create}">Create an event</a>
+        </div>
+    </nav>
 
     <script>
         // onSearch

@@ -29,5 +29,9 @@ public class ManagementServiceImpl implements ManagementService{
     public List<Management> findAll() {
         return managementRepository.findAll();
     }
-    
+
+    @Override
+    public List<Management> findByUser_Id(Long userId) {
+        return managementRepository.findByUser_Id(userId);
+    }
 }

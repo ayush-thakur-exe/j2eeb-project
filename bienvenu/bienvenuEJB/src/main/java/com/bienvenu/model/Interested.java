@@ -2,6 +2,7 @@ package com.bienvenu.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Interested")
@@ -36,9 +37,4 @@ public class Interested {
 		this.event = event;
 	}
 
-}
-
-class InterestedId implements Serializable {
-    private Long user;
-    private Long event;
 }

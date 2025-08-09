@@ -27,7 +27,7 @@ CREATE TABLE Event (
     datetime TIMESTAMP,
     longitude FLOAT,
     latitude FLOAT,
-    total_interest BIGINT
+    total_interest BIGINT default 0
 );
 
 -- Create Ticket_Links table
@@ -61,6 +61,8 @@ CREATE TABLE Interested (
 -- Playground
 insert into event(title, description, place, datetime, longitude, latitude, total_interest)
 values ('Movie night', 'Gather around with popcorn and snacks to enjoy the free movie night hosted by ignite!', 'Toronto, ON', now(), 43.121312, 75.923421, 12);
+update event set longitude=-79.87796533116581, latitude=43.249225741393346 where id=3;
+update event set total_interest=1 where id=4;
 
 select * from Interested;
 select * from Ticket_Links;

@@ -1,6 +1,7 @@
 package com.bienvenu.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class EventServiceImpl implements EventService{
     @Override
     public List<Event> findAll() {
         return eventRepository.findAll();
-    }   
+    }
+
+    @Override
+    public Event findById(Long id) {
+        Optional<Event> event = eventRepository.findById(id);
+        return event.orElse(null);
+    }
 }

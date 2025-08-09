@@ -76,7 +76,7 @@
 
 <main>
     <div class="signup-container">
-        <h2>Create an Account</h2>
+        <h2>Create an Event</h2>
         <form th:action="@{/event/create}" th:object="${event}" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -95,11 +95,13 @@
 
             <div class="form-group">
                 <label for="datetime">Date & Time</label>
-                <input type="text" th:field="*{datetime}" id="datetime" name="datetime" required />
+                <input type="datetime-local" th:field="*{datetime}" id="datetime" name="datetime" required />
             </div>
 
+            <input type="hidden" th:field="*{longitude}" id="longitude" value="0" />
+            <input type="hidden" th:field="*{latitude}" id="latitude" value="0" />
             <input type="hidden" th:field="*{totalInterest}" value="0" />
-            <button type="submit" class="submit-btn">Sign Up</button>
+            <button type="submit" class="submit-btn">Post Event!</button>
         </form>
     </div>
 </main>
@@ -108,7 +110,17 @@
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 <script>
-    
+    window.onload = () => {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position) => {
+                document.querySelector("#longitude").value = position.coords.longitude
+                document.querySelector("#latitude").value = position.coords.latitude;
+            });
+        }else{
+            alert("Please allow location!");
+            window.location.reload();
+        }
+    }
 </script>
 </body>
 </html>

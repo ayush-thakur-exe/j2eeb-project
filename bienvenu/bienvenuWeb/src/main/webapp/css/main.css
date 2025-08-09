@@ -14,6 +14,11 @@ body {
     padding: 0;
 }
 
+.invisible-a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -21,7 +26,23 @@ body {
     padding: 15px 30px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     background: white;
+    flex-wrap: wrap;
+}
+
+.site-navbar{
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    background: var(--highlight);
+    color: black;
+    flex-wrap: wrap;
     margin-bottom: 40px;
+    gap: 20px 80px;
+}
+
+.site-navbar a{
+    text-decoration: none;
+    color: black;
 }
 
 .logo {
@@ -33,6 +54,15 @@ body {
     color: var(--accent);
     margin-left: 10px;
     font-family: "Sansita Swashed", system-ui;
+}
+
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.9) inset;
 }
 
 .search-box {
@@ -80,6 +110,7 @@ body {
     height: 100%;
     background: #ddd;
     margin: 20px 0;
+    position: relative;
 }
 
 .featured-event-placeholder img{
@@ -124,6 +155,10 @@ body {
     gap: 40px;
 }
 
+.event-details span{
+    padding-bottom: 4px;
+}
+
 .join-btn {
     background: var(--accent);
     border: none;
@@ -132,6 +167,10 @@ body {
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.join-btn:hover{
+    filter: brightness(80%);
 }
 
 footer{
