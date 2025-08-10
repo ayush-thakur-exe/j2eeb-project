@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ManagementRepository extends JpaRepository<Management, Long>{
-    public List<Management> findByUser_Id(Long userId);
+    List<Management> findByUser_Id(Long userId);
 }

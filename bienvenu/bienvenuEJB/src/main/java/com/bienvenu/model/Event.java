@@ -2,7 +2,12 @@ package com.bienvenu.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Event")
@@ -18,6 +23,7 @@ public class Event {
 
     private String place;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime datetime;
 
     private Float longitude;
@@ -27,13 +33,16 @@ public class Event {
     private Long totalInterest;
 
     @OneToMany(mappedBy = "event")
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Management> managements;
 
     @OneToMany(mappedBy = "event")
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Interested> interests;
 
-	@OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
-	private Set<TicketLinks> ticketLinks;
+	@OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval=true)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private List<TicketLinks> ticketLinks = new ArrayList<>();
     
     // Getters and setters
 	public Long getId() {
@@ -93,7 +102,11 @@ public class Event {
 	}
 
 	public Long getTotalInterest() {
-		return totalInterest;
+		if(totalInterest == null){
+			return 0L;
+		}else{
+			return totalInterest;
+		}
 	}
 
 	public void setTotalInterest(Long totalInterest) {
@@ -116,12 +129,8 @@ public class Event {
 		this.interests = interests;
 	}
 
-	public Set<TicketLinks> getTicketLinks() {
-		return ticketLinks;
-	}
+	public List<TicketLinks> getTicketLinks() { return ticketLinks; }
 
-	public void setTicketLinks(Set<TicketLinks> ticketLinks) {
-		this.ticketLinks = ticketLinks;
-	}
+	public void setTicketLinks(List<TicketLinks> ticketLinks) { this.ticketLinks = ticketLinks; }
     
 }

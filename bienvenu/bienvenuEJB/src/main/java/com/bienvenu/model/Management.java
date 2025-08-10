@@ -18,7 +18,13 @@ public class Management {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    private String role;
+	public enum Role{
+		ORGANIZER,
+		MODERATOR
+	};
+
+	@Enumerated(EnumType.STRING)
+    private Role role;
 
     // Getters and setters
 	public User getUser() {
@@ -37,12 +43,12 @@ public class Management {
 		this.event = event;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
 	public void setRole(String role) {
-		this.role = role;
+		this.role = Role.valueOf(role);
 	}
 
 }

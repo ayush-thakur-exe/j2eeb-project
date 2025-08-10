@@ -3,12 +3,10 @@ package com.bienvenu.controller;
 import com.bienvenu.model.User;
 import com.bienvenu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AuthController {
@@ -22,8 +20,9 @@ public class AuthController {
     }
 
     @GetMapping("/auth/logout")
-    public String logout() {
-        return "user/logout";
+    public String logout(Model model, Authentication authentication) {
+        model.addAttribute("logout", true);
+        return "user/login";
     }
 
     // TODO: Send and retrieve user object for signup

@@ -32,12 +32,19 @@ body {
 .site-navbar{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 30px;
     background: var(--highlight);
     color: black;
     flex-wrap: wrap;
     margin-bottom: 40px;
     gap: 20px 80px;
+}
+
+.site-navbar div:first-child{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
 
 .site-navbar a{

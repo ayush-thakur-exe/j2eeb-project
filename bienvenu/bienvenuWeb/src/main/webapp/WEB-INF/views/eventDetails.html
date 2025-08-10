@@ -94,8 +94,8 @@
             </div>
 
             <div class="cta">
-                <a th:if="${param.interested == null}" th:href="@{/event/join/{id}(id=${event.id})}" class="btn btn-primary">I am Interested!</a>
-                <a th:if="${param.interested != null}" th:href="@{/}" class="btn btn-outline">Interested</a>
+                <a th:if="${!interested}" th:href="@{/event/join/{id}(id=${event.id})}" class="btn btn-primary">I am Interested!</a>
+                <a th:if="${interested}" class="btn btn-outline">Interested</a>
                 <a th:href="@{/}" class="btn btn-outline">Back to Events</a>
             </div>
         </section>

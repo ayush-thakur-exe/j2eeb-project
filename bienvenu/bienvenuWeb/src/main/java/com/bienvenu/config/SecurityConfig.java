@@ -45,7 +45,9 @@ public class SecurityConfig implements WebMvcConfigurer {
             )
             .logout(logout -> logout
                 .logoutUrl("/auth/logout")
-                .logoutSuccessUrl("/auth/login?logout")
+                .logoutSuccessUrl("/auth/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll()
             )
             .authenticationProvider(daoAuthenticationProvider());

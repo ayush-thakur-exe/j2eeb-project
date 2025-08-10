@@ -8,7 +8,7 @@
         </div>
 
         <div class="search-box">
-            <input type="text" placeholder="Search..." id="searchQuery">
+            <input type="text" placeholder="Search..." id="searchQuery" th:value="${param.q != null ? param.q : ''}">
             <div class="search-indicator" id="btnSearch">
                 Go!
             </div>
@@ -17,13 +17,18 @@
 
     <nav class="site-navbar">
         <div>
-            <a th:href="@{/event/get}">My Events</a>
+            <div>
+                <a th:href="@{/event/get}">My Events</a>
+            </div>
+            <div>
+                <a th:href="@{/event/myinterests}">My Interests</a>
+            </div>
+            <div>
+                <a th:href="@{/event/create}">Create an event</a>
+            </div>
         </div>
         <div>
-            <a th:href="@{/event/myinterests}">My Interests</a>
-        </div>
-        <div>
-            <a th:href="@{/event/create}">Create an event</a>
+            <a class="auth-link" href="/auth/logout" style="color: white">Logout</a>
         </div>
     </nav>
 
@@ -31,7 +36,7 @@
         // onSearch
         document.querySelector("#btnSearch").addEventListener("click", () => {
             const query = document.querySelector("#searchQuery").value
-            window.location.href = "/search?q="+query
+            window.location.href = "/event/search?q="+query
         })
     </script>
 </header>

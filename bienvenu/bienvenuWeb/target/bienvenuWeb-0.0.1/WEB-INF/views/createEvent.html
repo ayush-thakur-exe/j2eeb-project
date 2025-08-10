@@ -95,7 +95,11 @@
 
             <div class="form-group">
                 <label for="datetime">Date & Time</label>
-                <input type="datetime-local" th:field="*{datetime}" id="datetime" name="datetime" required />
+                <input type="datetime-local"
+                       id="datetime"
+                       name="datetime"
+                       th:value="${event.datetime != null ? #temporals.format(event.datetime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                       required />
             </div>
 
             <input type="hidden" th:field="*{longitude}" id="longitude" value="0" />

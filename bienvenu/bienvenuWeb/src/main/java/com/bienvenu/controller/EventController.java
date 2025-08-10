@@ -2,6 +2,8 @@ package com.bienvenu.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import com.bienvenu.model.Event;
 import com.bienvenu.model.Interested;
 import com.bienvenu.model.Management;
@@ -54,6 +56,33 @@ public class EventController {
 
     // TODO: add EDIT AND DELETE controllers here
 
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, Model model, Authentication authentication) {
+        boolean result = eventService.deleteById(id);
+        if(!result){
+            System.out.println("[FRONTEND ERROR] Could not delete: " + id);
+        }
+        return "redirect:/event/get";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model, Authentication auth) {
+        // (keep your organizer/permission checks)
+        Event event = eventService.findByIdWithLinks(id)
+                .orElseThrow(() -> new IllegalArgumentException("Event not found: " + id));
+        if (event.getTicketLinks() == null) event.setTicketLinks(new ArrayList<>());
+        model.addAttribute("event", event);
+        return "editEvent";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, @ModelAttribute("event") Event form, Authentication auth) {
+        // (keep your organizer/permission checks)
+        form.setId(id);
+        eventService.save(form);
+        return "redirect:/event/get";
+    }
+
     @GetMapping("/myinterests")
     public String eventList(Model model, Authentication authentication) {
         // Get logged-in username
@@ -103,9 +132,33 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public String showEvent(@PathVariable("id") Long id, Model model){
+    public String showEvent(
+            @PathVariable("id") Long id,
+            @RequestParam(value = "interested", required = false) Boolean interested,
+            Model model,
+            Authentication authentication){
         model.addAttribute("event", eventService.findById(id));
+
+        User user = userService.findByUsername(authentication.getName());
+        List<Interested> interestedList = interestedService.findByUser_Id(user.getId());
+
+        model.addAttribute("interested", false);
+        if(!interestedList.isEmpty()){
+            for(Interested i : interestedList){
+                if(i.getEvent().getId().equals(id)){
+                    model.addAttribute("interested", true);
+                }
+            }
+        }
+
         return "eventDetails";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String q, Model model) {
+        model.addAttribute("events", eventService.search(q));
+        model.addAttribute("q", q);
+        return "searchEvents";
     }
 
     @GetMapping("/join/{id}")

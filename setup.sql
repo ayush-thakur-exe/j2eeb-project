@@ -58,14 +58,42 @@ CREATE TABLE Interested (
     FOREIGN KEY (event_id) REFERENCES Event(id)
 );
 
+-- Management -> Event
+ALTER TABLE management DROP FOREIGN KEY management_ibfk_2;
+ALTER TABLE management
+  ADD CONSTRAINT management_ibfk_2
+  FOREIGN KEY (event_id) REFERENCES event(id)
+  ON DELETE CASCADE;
+
+-- Interested -> Event
+ALTER TABLE interested DROP FOREIGN KEY interested_ibfk_2;
+ALTER TABLE interested
+  ADD CONSTRAINT interested_ibfk_2
+  FOREIGN KEY (event_id) REFERENCES event(id)
+  ON DELETE CASCADE;
+
+-- Ticket_Links -> Event
+ALTER TABLE ticket_links DROP FOREIGN KEY ticket_links_ibfk_1;
+ALTER TABLE ticket_links
+  ADD CONSTRAINT ticket_links_ibfk_1
+  FOREIGN KEY (event_id) REFERENCES event(id)
+  ON DELETE CASCADE;
+
 -- Playground
 insert into event(title, description, place, datetime, longitude, latitude, total_interest)
 values ('Movie night', 'Gather around with popcorn and snacks to enjoy the free movie night hosted by ignite!', 'Toronto, ON', now(), 43.121312, 75.923421, 12);
 update event set longitude=-79.87796533116581, latitude=43.249225741393346 where id=3;
-update event set total_interest=1 where id=4;
+update event set total_interest=1 where id=8;
 
 select * from Interested;
 select * from Ticket_Links;
 select * from Management;
 select * from Event;
 select * from User;
+
+-- DO NOT RUN
+delete from Interested;
+delete from Ticket_Links;
+delete from Management;
+delete from Event;
+delete from User;

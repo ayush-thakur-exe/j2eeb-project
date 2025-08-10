@@ -76,6 +76,7 @@
 
 <main>
     <div class="login-container">
+        <div th:if="${logout != null}" style="text-align: center; color: #248f24">Successfully logged out</div>
         <h2>Welcome Back</h2>
         <form th:action="@{/login}" method="post">
             <div class="form-group">

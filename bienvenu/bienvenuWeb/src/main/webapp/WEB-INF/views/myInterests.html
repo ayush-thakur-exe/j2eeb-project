@@ -3,6 +3,27 @@
 <head>
   <title>Bienvenu - Events Near You</title>
   <link rel="stylesheet" th:href="@{/css/main.css}">
+  <style>
+    .btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn-view{
+      background-color: var(--primary);
+    }
+    .btn-container {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,6 +47,11 @@
         📍 <span th:text="${event.place}">Event Location</span>
         <br/>
         📅 <span th:text="${#temporals.format(event.datetime, 'd MMMM, yyyy')}">Event Date</span>
+      </div>
+
+      <!-- Edit/Delete Buttons -->
+      <div class="btn-container">
+        <a th:href="@{/event/{id}(id=${event.id})}" class="btn btn-view">ℹ️ View</a>
       </div>
     </div>
 

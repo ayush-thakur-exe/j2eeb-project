@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-US">
+<head>
+    <title>Server Error - Bienvenu</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #FFCB61;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .error-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px;
+            color: #EA5B6F;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #EA5B6F;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .home-link:hover {
+            background-color: #FF894F;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Optional header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main>
+    <div class="error-container">
+        <h1>500</h1>
+        <p><strong>Internal Server Error</strong></p>
+        <p th:if="${param.msg != null}" th:text="${param.msg[0]}">An unexpected error occurred.</p>
+        <a th:href="@{/}" class="home-link">Return Home</a>
+    </div>
+</main>
+
+<!-- Optional footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
