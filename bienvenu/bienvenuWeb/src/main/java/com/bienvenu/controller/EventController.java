@@ -8,9 +8,7 @@ import com.bienvenu.model.Event;
 import com.bienvenu.model.Interested;
 import com.bienvenu.model.Management;
 import com.bienvenu.model.User;
-import com.bienvenu.service.InterestedService;
-import com.bienvenu.service.ManagementService;
-import com.bienvenu.service.UserService;
+import com.bienvenu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,14 +16,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.bienvenu.service.EventService;
-
 @Controller
 @RequestMapping("/event/")
 public class EventController {
 
     @Autowired
     public EventService eventService;
+
+    @Autowired
+    public AIEventDetails aiEventDetails;
 
     @Autowired
     public UserService userService;
@@ -152,6 +151,46 @@ public class EventController {
         }
 
         return "eventDetails";
+    }
+
+    @GetMapping("/ai/{id}")
+    public String showEventAI(
+            @PathVariable("id") Long id,
+            @RequestParam(value = "interested", required = false) Boolean interested,
+            Model model,
+            Authentication authentication){
+        model.addAttribute("event", eventService.findById(id));
+
+        User user = userService.findByUsername(authentication.getName());
+        List<Interested> interestedList = interestedService.findByUser_Id(user.getId());
+
+        model.addAttribute("interested", false);
+        if(!interestedList.isEmpty()){
+            for(Interested i : interestedList){
+                if(i.getEvent().getId().equals(id)){
+                    model.addAttribute("interested", true);
+                }
+            }
+        }
+
+        String moreInfo = aiEventDetails.generateEventDetails(id);
+        moreInfo = formatAiText(moreInfo);
+        model.addAttribute("moreInfo", moreInfo);
+
+        return "eventDetails";
+    }
+
+    public String formatAiText(String text) {
+        if (text == null) return "";
+
+        // Convert **bold** to <b>bold</b>
+        String formatted = text.replaceAll("\\*\\*(.*?)\\*\\*", "<b>$1</b>");
+
+        // Convert new lines to <br/>
+        formatted = formatted.replace("\n", "<br/>");
+        formatted = formatted.replace("*", "•");
+
+        return formatted;
     }
 
     @GetMapping("/search")
