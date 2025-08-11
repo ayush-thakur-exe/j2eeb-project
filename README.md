@@ -56,8 +56,8 @@ This project provides a practical solution to real-world event coordination chal
 
 | Team Member | Assigned Task |
 | :--- | :--- |
-| Ayush Thakur | EJB Container |
-| Manas Pandya | Web Component |
+| Ayush Thakur | Web Components |
+| Manas Pandya | EJB Container |
 | Vivek Chalodiya | Database connection |
 
 ***
@@ -67,7 +67,7 @@ This project provides a practical solution to real-world event coordination chal
 ### Class Diagram
 The system is composed of four main entities:
 * **User:** Contains user details such as userId, name, email, password, and role, along with methods for registration and login.
-* **Event:** Holds all event-specific information including eventId, title, description, date, and capacity, with methods to create, edit, and delete events.
+* **Event:** Holds all event-specific information, including eventId, title, description, date, and capacity, with methods to create, edit, and delete events.
 * **Registration:** Links users to events and contains registrationId, userId, and eventId. It includes a method for registering a user to an event.
 * **Venue:** Stores information about the event location, including venueId, name, and location, with a method to list venues.
 
